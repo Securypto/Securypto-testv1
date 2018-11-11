@@ -1,0 +1,26 @@
+[Unit]
+Description=Securypto's distributed currency daemon
+After=network.target
+
+[Service]
+User=securypto
+Group=securypto
+
+Type=forking
+PIDFile=/var/lib/securyptod/securyptod.pid
+
+ExecStart=/usr/bin/securyptod -daemon -pid=/var/lib/securyptod/securyptod.pid \
+          -conf=/etc/securypto/securypto.conf -datadir=/var/lib/securyptod
+
+ExecStop=-/usr/bin/securypto-cli -conf=/etc/securypto/securypto.conf \
+         -datadir=/var/lib/securyptod stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
