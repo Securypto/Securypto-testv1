@@ -10,6 +10,18 @@
 std::string GetMainCheckpoints() {
     std::string strMainCheckpoints = "[\n"
             "  {\n"
+            "    \"height\": 30,\n"
+            "    \"1\": \"0\",\n"
+            "    \"5\": \"0\",\n"
+            "    \"10\": \"0\",\n"
+            "    \"50\": \"0\",\n"
+            "    \"100\": \"0\",\n"
+            "    \"500\": \"0\",\n"
+            "    \"1000\": \"0\",\n"
+            "    \"5000\": \"0\"\n"
+            "  },\n"
+
+            "  {\n"
             "    \"height\": 350,\n"
             "    \"1\": \"283f355e77a74751f6f4be7a57ad6e930818201d2067a28a9b9fb463215ffda4d09185032b76a91226f1b7f5ac95ca45c699c4ce01175746c3e0e49e164e8324562d30ec235d8ca746d1309628ded2d410b27ea8dc56a90fdace5ed79c07b3cbd67fb8756b2436e379759f68ff6b455eeb03ff3b980628fa52c24269713c33506bcec4f952553d1298f39bb1777f05aec3c706a3837089463f15eaa65106086f06129022656cf69fc3a7a96028bf31d4e357d695a1ae36272343d5fe64b9f683e5bf3ff279ef16cae1469bc65639b8a00ccce47f8be23a78e44fdbea53aa8fe5e288fe4c353c0e5082e4c396b6418dc2d0e35f42fbcdbb6f0ae1dadd6d8e9869\",\n"
             "    \"5\": \"c841b07de8d7f59e75e761a600566b41c37b674d473c6a6f089d0e3dc11433045ef7e60018bf344a7d0ef621d7867b9293e7d0588c6eeac9c33395c305a03704fdfd54dbdd6070cefaed5df3c8aac40aad90a1e396fd41bc8a3f2185263d2d5ab1fd99ca115dede847fe1a633772c777d149cc84901b5f5c306be13552ee5404713be89a497a24b50992c5e2cb2b2a4bdd1b770538eca1cd24751ff0e7444810cf2978dbf7caf28efcdc55d6ef8c4d09c51173ffe3ace7b2e04ed5d353bdda86d3cd05503db85bf6ff3ba3f8985a7516cbdf3eb58c5ddbb6c8d0d740e0e9b0bc6ae87d460eccce22d0269bd6183b8286819900efa4eb5866806e311892bdea0\",\n"
