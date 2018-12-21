@@ -2866,6 +2866,14 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, CAmount> >& vecSend,
                             txNew.vout.insert(position, newTxOut);
                         }
                     }
+
+                    // Add transaction comment - OP_RETURN
+                    if(!wtxNew.mapValue["comment"].empty()){
+                        std::vector<unsigned char> data = ParseHex(HexStr(wtxNew.mapValue["comment"]));
+                        CTxOut txout(0, CScript() << OP_RETURN << data);
+                        txNew.vout.push_back(txout);
+                    }
+
                 } else
                     reservekey.ReturnKey();
 
@@ -4880,6 +4888,13 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, int nSecurityLevel,
             //add output to securypto address to the transaction (the actual primary spend taking place)
             CTxOut txOutZerocoinSpend(nValue, scriptZerocoinSpend);
             txNew.vout.push_back(txOutZerocoinSpend);
+
+            // Add transaction comment - OP_RETURN
+            if(!wtxNew.mapValue["comment"].empty()){
+                std::vector<unsigned char> data = ParseHex(HexStr(wtxNew.mapValue["comment"]));
+                CTxOut txout(0, CScript() << OP_RETURN << data);
+                txNew.vout.push_back(txout);
+            }
 
             //hash with only the output info in it to be used in Signature of Knowledge
             uint256 hashTxOut = txNew.GetHash();

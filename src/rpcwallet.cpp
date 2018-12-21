@@ -2771,7 +2771,7 @@ UniValue mintzerocoin(const UniValue& params, bool fHelp)
 
 UniValue spendzerocoin(const UniValue& params, bool fHelp)
 {
-    if (fHelp || params.size() > 5 || params.size() < 4)
+    if (fHelp || params.size() > 6 || params.size() < 4)
         throw runtime_error(
             "spendzerocoin amount mintchange minimizechange securitylevel ( \"address\" )\n"
             "\nSpend zSCU to a SCU address.\n" +
@@ -2830,7 +2830,7 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     int nSecurityLevel = params[3].get_int();       // Security level
 
     CBitcoinAddress address = CBitcoinAddress(); // Optional sending address. Dummy initialization here.
-    if (params.size() == 5) {
+    if (params.size() >= 5) {
         // Destination address was supplied as params[4]. Optional parameters MUST be at the end
         // to avoid type confusion from the JSON interpreter
         address = CBitcoinAddress(params[4].get_str());
@@ -2843,7 +2843,11 @@ UniValue spendzerocoin(const UniValue& params, bool fHelp)
     CZerocoinSpendReceipt receipt;
     bool fSuccess;
 
-    if(params.size() == 5) // Spend to supplied destination address
+    if (params.size() == 6 && !params[5].isNull() && !params[5].get_str().empty()){
+        wtx.mapValue["comment"] = params[5].get_str();
+    }
+
+    if(params.size() >= 5) // Spend to supplied destination address
         fSuccess = pwalletMain->SpendZerocoin(nAmount, nSecurityLevel, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange, &address);
     else                   // Spend to newly generated local address
         fSuccess = pwalletMain->SpendZerocoin(nAmount, nSecurityLevel, wtx, receipt, vMintsSelected, fMintChange, fMinimizeChange);
